@@ -1,7 +1,17 @@
 source 'https://rubygems.org'
-ruby '2.3.0'
+#heroku
+gem 'rails_12factor', group: :production
+
+group :development, :test do
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+end
+
 gem 'rails', '4.2.6'
-gem 'sqlite3'
+
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -25,10 +35,10 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_layout'
 end
-group :production do
-  gem 'unicorn'
-end
+
 gem 'savon'
 gem 'remotipart', '~> 1.2'
 gem 'nokogiri'
 gem 'twitter-bootstrap-rails'
+
+ruby '2.3.0'
