@@ -11,7 +11,7 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.hidden_field :company_id, :value => @user.company_id %>
 <div class="row">
   <div class="panel panel-default">
     <div class="panel-heading"><h3>Dados principais do Usuário</h3></div>
@@ -36,6 +36,15 @@
                         <%= f.password_field :password, :class =>"form-control input-sm"%>
                     </div>
                   </div>
+
+                  <div class="form-group">
+                    <%= f.label :adm, "Administrador do sistema:", class: "col-lg-2 control-label" %>
+                    <div class="col-lg-10">
+                      <%= f.check_box :adm, {},"true","false" %>
+                    </div>
+                  </div>
+
+
         </div>
       </div>
   </div>

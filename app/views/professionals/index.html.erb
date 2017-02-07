@@ -1,0 +1,37 @@
+<div class="col-lg-12">
+    <div class="col-lg-1">
+    </div>
+    <div class="col-lg-10">
+        <p id="notice"><%= notice %></p>
+
+        <h1>Profissionais</h1>
+        </br>
+        </br>
+        <div class="row">
+            <%= link_to 'Novo Profissional', new_professional_path,:class =>'btn btn-primary' %>
+        </div>
+        </br>
+        </br>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @professionals.each do |professional| %>
+              <tr>
+                <td><%= professional.name %></td>
+                <td><%= number_with_delimiter(professional.cpf, delimiter: ".") %></td>
+                <td><%= number_to_phone(professional.fone) %></td>
+                <td><%= link_to 'Editar', edit_professional_path(professional),{:class =>'btn btn-primary'}%></td>
+                <td><%= link_to 'Excluir', professional,:class =>'btn btn-danger', method: :delete, data: { confirm: 'Confirma a Exclusão?' }%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+    <div class="col-lg-1">
+    </div>
+<div>

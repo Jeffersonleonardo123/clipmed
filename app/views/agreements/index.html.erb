@@ -1,0 +1,38 @@
+<div class="col-lg-12">
+    <div class="col-lg-1">
+    </div>
+    <div class="col-lg-10">
+        <p id="notice"><%= notice %></p>
+
+        <h1>Convenios</h1>
+        </br>
+        </br>
+        <div class="row">
+            <%= link_to 'Novo Convenio', new_agreement_path,:class =>'btn btn-primary' %>
+        </div>
+        </br>
+        </br>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @agreements.each do |agreement| %>
+              <tr>
+                <td><%= agreement.name %></td>
+                <td><%= number_with_delimiter(agreement.cnpj, delimiter: ".") %></td>
+                <td><%= number_to_phone(agreement.fone) %></td>
+                <td><%= agreement.email %></td>
+                <td><%= link_to 'Editar', edit_agreement_path(agreement),{:class =>'btn btn-primary'}%></td>
+                <td><%= link_to 'Excluir', agreement,:class =>'btn btn-danger', method: :delete, data: { confirm: 'Confirma a Exclusão?' }%></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+    <div class="col-lg-1">
+    </div>
+<div>

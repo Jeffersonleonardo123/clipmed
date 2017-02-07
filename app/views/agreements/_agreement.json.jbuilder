@@ -1,0 +1,2 @@
+json.extract! agreement, :id, :name, :email, :cnpj, :fone, :company_id, :number, :address, :zip, :neighborhood, :city, :state, :observation, :contact, :site, :created_at, :updated_at
+json.url agreement_url(agreement, format: :json)

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :companies
+  resources :agreements
+  resources :professionals
+  resources :clients
   resources :users
 
   #  begin

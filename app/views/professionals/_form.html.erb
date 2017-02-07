@@ -1,0 +1,185 @@
+<%= form_for @professional ,:html => {:class => "form-horizontal center"}  do |f| %>
+  <% if @professional.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@professional.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+      <% @professional.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :company_id, :value => @professional.company_id %>
+  <div class="col-lg-11">
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2 col-md-offset-1">
+                        <label>Nome</label>
+                    </div>
+                    <div class="col-md-8">
+                      <%= f.text_field :name, :class =>"form-control input-sm text-uppercase" %>
+                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-2 col-md-offset-1">
+                  <label>Email</label>
+                </div>
+                <div class="col-md-8">
+                  <%= f.text_field :email, :class =>"form-control input-sm text-uppercase" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2 col-md-offset-1">
+                        <label>Cpf</label>
+                    </div>
+                    <div class="col-md-8">
+                        <%= f.text_field :cpf, :class =>"form-control input-sm", :data=> {:mask=> '999.999.999-99'} %>
+                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2 col-md-offset-1">
+                        <label>Celular</label>
+                    </div>
+                    <div class="col-md-8">
+                        <%= f.text_field :celular, :class =>"form-control input-sm",:data=> {:mask=> '(99)99999-9999'} %>
+                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2 col-md-offset-1">
+                        <label>Fone</label>
+                    </div>
+                    <div class="col-md-8">
+                        <%= f.text_field :fone, :class =>"form-control input-sm",:data=> {:mask=> '(99)99999-9999'} %>
+                     </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2 col-md-offset-1">
+                        <label>Cep</label>
+                    </div>
+                    <div class="col-md-3">
+                      <%= f.text_field :zip, :class =>"form-control input-sm",:data=> {:mask=> '99999-999'} %>
+                     </div>
+                     <div class="col-md-5">
+                         <button type="button" name="buttonBuscar" id="buttonBuscar" class="btn btn-success btn-sm">Buscar Endereço</button>
+                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-2  col-md-offset-1">
+                        <label>Endereço</label>
+                    </div>
+                    <div class="col-md-8">
+                        <%= f.text_field :address, :class =>"form-control input-sm"%>
+                    </div>
+                </div>
+            </div>
+
+          <div class="row">
+              <div class="form-group">
+                  <div class="col-md-2   col-md-offset-1">
+                      <label>Numero</label>
+                  </div>
+                  <div class="col-md-3">
+                    <%= f.text_field :number, :class =>"form-control input-sm"%>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="form-group">
+                  <div class="col-md-2   col-md-offset-1">
+                      <label>Bairro</label>
+                  </div>
+                  <div class="col-md-8">
+                    <%= f.text_field :neighborhood, :class =>"form-control input-sm"%>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="form-group">
+                  <div class="col-md-2  col-md-offset-1">
+                      <label>Cidade</label>
+                  </div>
+                  <div class="col-md-8">
+                    <%= f.text_field :city, :class =>"form-control input-sm"%>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="form-group">
+                  <div class="col-md-2  col-md-offset-1">
+                    <label>Estado</label>
+                  </div>
+                  <div class="col-md-8">
+                      <%= f.text_field :state, :class =>"form-control input-sm"%>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="form-group">
+                  <div class="col-md-2 col-md-offset-1">
+                      <label>Observação</label>
+                  </div>
+                  <div class="col-md-8">
+                    <%= f.text_area :observation, :class =>"form-control input-sm"%>
+                  </div>
+              </div>
+          </div>
+</div>
+
+
+    <div class="bs-example" data-example-id="block-btns">
+        <div class="well center-block" style="max-width:400px">
+            <%= f.submit 'Confirmar', :class =>"btn btn-primary btn-block" %>
+            <%= link_to 'Cancelar', professionals_path,{:class =>"btn btn-danger btn-block"}%>
+        </div>
+    </div>
+
+
+<% end %>
+
+
+<script type="text/javascript" language="javascript">
+  $(document).ready(function() {
+      $('#buttonBuscar').click(function(){
+              var cep = $("#professional_zip").val().replace(/\D/g, '');
+              if (cep != "") {
+                  var validacep = /^[0-9]{8}$/;
+                  if(validacep.test(cep)) {
+                      $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                          if (!("erro" in dados)) {
+                              $("#professional_address").val(dados.logradouro);
+                              $("#professional_neighborhood").val(dados.bairro);
+                              $("#professional_city").val(dados.localidade);
+                              $("#professional_state").val(dados.uf);
+                              $("#professional_number").focus();
+                          }
+                          else {
+                              alert("CEP não encontrado.");
+                          }
+                      });
+                  }
+              }
+      });
+});
+
+
+</script>

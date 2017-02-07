@@ -11,17 +11,95 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170128170121) do
+ActiveRecord::Schema.define(version: 20170205193406) do
+
+  create_table "agreements", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "cnpj"
+    t.string   "fone"
+    t.integer  "company_id"
+    t.integer  "number"
+    t.string   "address"
+    t.string   "zip"
+    t.string   "neighborhood"
+    t.string   "city"
+    t.string   "state"
+    t.text     "observation"
+    t.string   "contact"
+    t.text     "site"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "cpf"
+    t.string   "celular"
+    t.string   "fone"
+    t.integer  "company_id"
+    t.integer  "number"
+    t.string   "address"
+    t.string   "zip"
+    t.string   "neighborhood"
+    t.string   "city"
+    t.string   "state"
+    t.text     "observation"
+    t.string   "situation"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "professional_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "cnpj"
+    t.string   "fone"
+    t.integer  "number"
+    t.string   "address"
+    t.string   "zip"
+    t.string   "neighborhood"
+    t.string   "city"
+    t.string   "state"
+    t.text     "observation"
+    t.string   "contact"
+    t.text     "site"
+    t.text     "logo"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "professionals", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "cpf"
+    t.string   "celular"
+    t.string   "fone"
+    t.integer  "company_id"
+    t.integer  "number"
+    t.string   "address"
+    t.string   "zip"
+    t.string   "neighborhood"
+    t.string   "city"
+    t.string   "state"
+    t.text     "observation"
+    t.string   "situation"
+    t.string   "function"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.string   "id_company"
     t.string   "email"
     t.string   "password"
     t.string   "encrypted_password"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.string   "type"
+    t.string   "adm"
+    t.integer  "company_id"
   end
 
 end
