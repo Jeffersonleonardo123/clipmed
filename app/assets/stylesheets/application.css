@@ -12,4 +12,41 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-datepicker
+ *= require material_icons
  */
+ .line-table{
+    background:  #ffffff;
+ }
+
+ .icon-title{
+   color: #ffffff;
+ }
+
+ .div-extern{
+   background:   #999999;
+ }
+
+ .div-inter{
+   background:   #e6e6e6;
+   padding-left: 30px;
+   padding-right: 30px;
+ }
+
+ .label-title{
+   font-size: 30px;
+   color: #ffffff;
+ }
+
+ .head-table{
+   background-color: #999999;
+   color:  #ffffff;
+ }
+
+ .btn-sm{
+   border-radius:0px !important;
+ }
+
+ .input-sm{
+   border-radius:0px !important;
+ }

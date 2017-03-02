@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205193406) do
+ActiveRecord::Schema.define(version: 20170210000808) do
 
   create_table "agreements", force: :cascade do |t|
     t.string   "name"
@@ -89,6 +89,19 @@ ActiveRecord::Schema.define(version: 20170205193406) do
     t.string   "function"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "schedullers", force: :cascade do |t|
+    t.string   "company_id"
+    t.integer  "user_id"
+    t.integer  "client_id"
+    t.integer  "professional_id"
+    t.string   "date"
+    t.date     "date_marked"
+    t.time     "time_marked"
+    t.text     "observation"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade do |t|

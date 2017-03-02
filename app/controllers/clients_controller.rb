@@ -63,6 +63,16 @@ class ClientsController < ApplicationController
     end
   end
 
+  def find_clients
+    name = params[:name]
+    @client = Client.new
+    @clients = Client.where("name LIKE ? ", "%#{name}%" )
+  end
+
+  def scheduller_day
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client

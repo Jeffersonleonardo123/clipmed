@@ -1,0 +1,118 @@
+<form id="scheduller-form" action="index.html" method="post">
+      <input type="hidden" id="id" name="id" value="<%= @scheduller.id%>">
+      <div class="col-md-3 div-inter">   <!-- Formulario de cadastro  -->
+      <br>
+      <div class="row">
+          <button type="button"  id="btnNew" class="btn btn-info btn-block btn-sm ">Novo Agendamento</button>
+      </div>
+      <br>
+
+      <div class="row">
+          <div class="input-group">
+            <input type="text" id="date" name="date" value="<%= @scheduller.date%>" class="datepicker form-control input-sm" placeholder="Data">
+          </div>
+      </div>
+      <div class="row">
+            <div class="col-md-6  div-no-padding">
+              <input type="time" id="time_marked" name="time_marked" value="<%= @scheduller.time_marked.strftime('%H:%M') %>" class="form-control input-sm" placeholder="Hora">
+            </div>
+            <div class="col-md-6  div-no-padding">
+              <input type="time" id="time_marked_end" name="time_marked_end" value="<%= @scheduller.time_marked_end.strftime('%H:%M') %>" class="form-control input-sm" placeholder="Hora">
+            </div>
+      </div>
+
+      <div class="row">
+          <select id="professional_id" name="professional_id" class="form-control"style="width: 100%;">
+            <%= @professionals.each do |professional| %>
+                  <% if @scheduller.professional_id == professional.id %>
+                    <option selected="true" value="<%= professional.id%>"><%= professional.name%></option>
+                  <% end %>
+                  <% if @scheduller.professional_id != professional.id %>
+                    <option value="<%= professional.id%>"><%= professional.name%></option>
+                  <% end %>
+          <% end %>
+         </select>
+      </div>
+      <div class="row">
+          <div class="field" >
+            <div class="input-group">
+              <div id="div_inf_of_client" class="col-md-8 div-no-padding">
+                <input type="text" id="name" name="name" value="<%= @scheduller.name %>" class="form-control text-uppercase input-sm" placeholder="Paciente">
+                <input type="hidden" id="client_id" value="<%= @scheduller.client_id %>" name="client_id" >
+              </div>
+              <div class="col-md-4 div-no-padding">
+                  <button type="button" name="button_find_client" id="button_find_client" class="btn btn-success btn-block btn-sm " data-toggle="modal" data-target="#modal_find_client">Buscar</button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+          <select id="status" name="status" class="form-control"style="width: 100%;">
+              <option value="confirmed">CONFIRMADO</option>
+              <option value="not_confirmed">NÃO CONFIRMADO</option>
+
+              <% if @scheduller.status == "confirmed" %>
+                <option selected="true" value="confirmed">CONFIRMADO</option>
+              <% end %>
+              <% if @scheduller.status != "confirmed" %>
+                <option selected="true" value="not_confirmed">NÃO CONFIRMADO</option>
+              <% end %>
+
+         </select>
+      </div>
+      <div class="row">
+        <div class="field" >
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons md-18">stay_current_portrait</i>
+            </span>
+            <input type="tel" class="form-control" id="celphone" name="celphone" value="<%=@scheduller.celphone%>" rows="3"  style="max-width:100%;" placeholder="Celular"></input>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field" >
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="material-icons md-18">call</i>
+            </span>
+            <input type="text" class="form-control" id="phone" name="phone" value="<%=@scheduller.phone%>" rows="3"  style="max-width:100%;" placeholder="Fone"></input>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field" >
+          <div class="input-group">
+            <textarea class="form-control" id="observation" name="observation" value="<%=@scheduller.observation%>" rows="3" id="comment" style="max-width:100%;" placeholder="Observações"></textarea>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+          <div class="col-md-6">
+            <button type="button" id="btnSave"  class="btn btn-info btn-block  btn-sm" name="button">Salvar</button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" id="btnCancel"  class="btn btn-danger btn-block  btn-sm" name="button">Cancelar</button>
+          </div>
+      </div>
+
+    </form>
+
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+              $("#celphone").inputmask({"mask": "(99) 99999-9999"});
+              $("#phone").inputmask({"mask": "(99) 99999-9999"});
+
+              $('.datepicker').datepicker({
+                    format: 'dd/mm/yyyy',
+                    language: 'pt-BR',
+                      autoclose: true
+              });
+              $('.datepicker').datepicker();
+
+            });
+    </script>

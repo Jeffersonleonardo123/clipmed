@@ -15,5 +15,10 @@
 //= require bootstrap-sprockets
 //= require bootstrap/modal
 //= require_tree .
-//= require turbolinks
 //= require jquery.remotipart
+//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.fr.js
+//= require jquery.inputmask
+//= require turbolinks

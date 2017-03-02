@@ -40,5 +40,9 @@ gem 'savon'
 gem 'remotipart', '~> 1.2'
 gem 'nokogiri'
 gem 'twitter-bootstrap-rails'
+gem "watu_table_builder", :require => "table_builder"
+gem 'bootstrap-datepicker-rails'
+gem 'material_icons'
+gem 'jquery-inputmask-rails'
 
 ruby '2.3.0'

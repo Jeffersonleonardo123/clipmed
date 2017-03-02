@@ -1,0 +1,35 @@
+
+<div id="calendar">
+	<h2 id="month">
+
+		<!-- <%= link_to :remote=> true, :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d"),:date_find => (@date.beginning_of_month-1).strftime("%Y-%m-%d")  do %>
+		   <i class="material-icons md-38 icon-title">arrow_back</i>
+		<% end %> -->
+
+		<label class="label-title"><%=h @date.strftime("%-m / %Y") %></label>
+
+		<!-- <%= link_to :remote=> true, :month => (@date.end_of_month+1).strftime("%Y-%m-%d"),:date_find => (@date.end_of_month+1).strftime("%Y-%m-%d") do %>
+		   <i class="material-icons md-38 icon-title">arrow_forward</i>
+		<% end %> -->
+
+	</h2>
+	<%= calendar_for @schedullers_month, :year => @date.year, :month => @date.month do |t| %>
+			<%= t.head('DOM','SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB') %>
+					<%= t.day do |day, schedullers| %>
+							<div class="panel panel-default">
+						  <div class="panel-heading"><%= day.day %></div>
+						  <div class="panel-body" style="padding:0px;">
+								<table class="bordered">
+								<% schedullers.each do |scheduller| %><br>
+								<tr>
+									<td style="height:0px;"><%= scheduller.time_marked.strftime("%H:%M")%></td>
+									<td style="height:0px;"><%= scheduller.time_marked_end.strftime("%H:%M")%></td>
+									<td style="height:0px;"><%= scheduller.name[0..5] %></td>
+								</tr>
+								<% end %>
+							</table>
+				  </div>
+				</div>
+			<% end %>
+	<% end %>
+</div>

@@ -1,0 +1,275 @@
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <i class="material-icons md-48 icon-title">scheduler</i>
+    <label class="label-title">Agendamento</label>
+  </div>
+</div>
+
+<div class="col-md-12">
+  <div class="row">
+        <div class="col-md-12 div-inter">
+          <p id="notice"><%= notice %></p>
+            <div class="col-md-10">
+              <div class="col-md-6  div-no-padding">
+                  <div class="field" >
+                    <div class="input-group">
+                      <span class="input-group-addon input-sm">
+                          <i class="material-icons md-18">date_range</i>
+                      </span>
+                      <input type="text" id="date_find" name="" value="" class="datepicker form-control input-sm" placeholder="Data">
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-6  div-no-padding">
+                      <select id="id_professional" class="form-control input-sm" style="width: 100%;">
+                      <%= @professionals.each do |professional| %>
+                              <option value="<%= professional.id%>"><%= professional.name%></option>
+                      <% end %>
+                    </select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                 <button type="button" id="btnFiltrar"  class="btn btn-info btn-block  btn-sm" name="button">Filtrar</button>
+              </div>
+            </div>
+        </div>
+  </div>
+
+  <br>
+    <div class="row">
+      <div id="div_form">
+
+
+      <form id="scheduller-form" action="index.html" method="post">
+          <div class="col-md-3 div-inter">   <!-- Formulario de cadastro  -->
+            <br>
+            <div class="row">
+                <button type="button"  id="btnNew" class="btn btn-info btn-block btn-sm ">Novo Agendamento</button>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="input-group">
+                  <input type="text" id="date" name="date" value="" class="datepicker form-control input-sm" placeholder="Data">
+                </div>
+            </div>
+            <div class="row">
+                  <div class="col-md-6  div-no-padding">
+                    <input type="time" id="time_marked" name="time_marked" value="" class="form-control input-sm" placeholder="Hora">
+                  </div>
+                  <div class="col-md-6  div-no-padding">
+                    <input type="time" id="time_marked_end" name="time_marked_end" value="" class="form-control input-sm" placeholder="Hora">
+                  </div>
+            </div>
+
+            <div class="row">
+                <select id="professional_id" name="professional_id" class="form-control"style="width: 100%;">
+                  <%= @professionals.each do |professional| %>
+                        <option value="<%= professional.id%>"><%= professional.name%></option>
+                <% end %>
+               </select>
+            </div>
+            <div class="row">
+                <div class="field" >
+                  <div class="input-group">
+                    <div id="div_inf_of_client" class="col-md-8 div-no-padding">
+                      <input type="text" id="name" name="name" value="" class="form-control text-uppercase input-sm" placeholder="Paciente">
+                      <input type="hidden" id="client_id" value="" name="client_id" >
+                    </div>
+                    <div class="col-md-4 div-no-padding">
+                        <button type="button" name="button_find_client" id="button_find_client" class="btn btn-success btn-block btn-sm " data-toggle="modal" data-target="#modal_find_client">Buscar</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+                <select id="status" name="status" class="form-control"style="width: 100%;">
+                    <option value="not_confirmed">NÃO CONFIRMADO</option>
+                    <option value="confirmed">CONFIRMADO</option>
+               </select>
+            </div>
+            <div class="row">
+              <div class="field" >
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="material-icons md-18">stay_current_portrait</i>
+                  </span>
+                  <input type="tel" class="form-control" id="celphone" name="celphone" rows="3"  style="max-width:100%;" placeholder="Celular"></input>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="field" >
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="material-icons md-18">call</i>
+                  </span>
+                  <input type="text" class="form-control" id="phone" name="phone" rows="3"  style="max-width:100%;" placeholder="Fone"></input>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field" >
+                <div class="input-group">
+                  <textarea class="form-control" id="observation" name="observation" rows="3" id="comment" style="max-width:100%;" placeholder="Observações"></textarea>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                  <button type="button" id="btnSave"  class="btn btn-info btn-block  btn-sm" name="button">Salvar</button>
+                </div>
+                <div class="col-md-6">
+                  <button type="button" id="btnCancel"  class="btn btn-danger btn-block  btn-sm" name="button">Cancelar</button>
+                </div>
+            </div>
+            <br>
+          </form>
+        </div>
+              <br>
+              <br>
+          </div>   <!-- Fim do Formulario de cadastro  -->
+
+
+          <!-- lista de agendamentos -->
+          <div class="col-md-1"  style="width:1%">
+          </div>
+          <div class="col-md-8 div-inter">
+            <br>
+              <div class="row">
+                <div class="field" >
+                  <div class="input-group">
+                      <div id="div_list_scheduller">
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          </div>  <!-- div row  -->
+  </div> <!-- div principal 10 -md -->
+
+
+<div id="div_month">  
+  <%= render 'month' %>
+</div>
+
+<br>
+<br>
+
+<%= render 'clients/modal_find_client' %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+          $("#celphone").inputmask({"mask": "(99) 99999-9999"});
+          $("#phone").inputmask({"mask": "(99) 99999-9999"});
+
+          $('.datepicker').datepicker({
+                format: 'dd/mm/yyyy',
+                language: 'pt-BR',
+                  autoclose: true
+          });
+          $(".datepicker").datepicker('setDate', new Date());
+          $('.datepicker').datepicker();
+
+
+        // Edit scheduller
+        $('body').on('click', '.btn_edit_scheduller', function(event){
+            event.preventDefault();
+                var id = $(this).attr('id');
+                $.get("<%=alter_scheduller_path%>",
+                     {'scheduller_id':id},
+                    function(data){
+                     }
+                );
+        });
+        //End Edit scheduller
+
+        // Save scheduller
+        $('body').on('click', '#btnSave', function(event){
+          event.preventDefault();
+
+          var id = document.getElementById('client_id').value;
+          var status = document.getElementById('status').value;
+          if( id == "" && status == "confirmed"){
+            alert('Obrigátorio vincular um paciente para confirmaçao de agendamento!');
+            return;
+          }
+          var scheduller = $('#scheduller-form').serialize();
+          $.post("<%=save_scheduller_path%>",
+               scheduller,
+               function(data){
+                 $('#client_id').val()="";
+              });
+
+        });
+        //end save scheduller
+
+        $('body').on('click', '#btnCancel', function(event){
+            document.getElementById("name").value = "";
+            document.getElementById("status").value = "not_confirmed"
+            document.getElementById("celphone").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("observation").value = "";
+            document.getElementById("date").value = "";
+            document.getElementById("time_marked").value = "";
+            document.getElementById("date").focus();
+        });
+
+        $('body').on('click', '#btnNew', function(event){
+            document.getElementById("name").value = "";
+            document.getElementById("status").value = "not_confirmed"
+            document.getElementById("celphone").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("observation").value = "";
+            document.getElementById("date").value = "";
+            document.getElementById("time_marked").value = "";
+            document.getElementById("date").focus();
+        });
+
+
+        // FILTER schedullers
+        $('body').on('click', '#btnFiltrar', function(event){
+          event.preventDefault();
+          var date_find = document.getElementById('date_find').value;
+          var professional_id =  document.getElementById('id_professional').value;
+
+          $.get("<%=scheduller_filter_day_path%>",
+          {'date_find':date_find,
+          'professional_id':professional_id},
+          function(data){
+          });
+        });
+        // END FIND schedullers
+
+        //MODAL FIND CLIENTS
+        $('body').on('click', '#button_make_find', function(){
+            $.get("<%=find_clients_path%>",
+                    {'name':$("#name_find_client").val()},
+                    function(data){
+
+                    });
+        });
+        //END FIND
+
+        //MODAL CONFIRM CLIENT
+        $('body').on('click', '.btn_confirm_client', function(){
+                var id = $(this).attr('id');
+                $.post("<%=confirm_client_path%>",
+                     {'client_id':id},
+                    function(data){
+                     }
+                );
+              $('#modal_find_client').modal('toggle')
+        });
+        //END CONFIRM
+
+  });
+
+
+</script>

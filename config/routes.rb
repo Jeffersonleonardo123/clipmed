@@ -1,18 +1,32 @@
 Rails.application.routes.draw do
-  resources :companies
-  resources :agreements
-  resources :professionals
-  resources :clients
-  resources :users
 
   #  begin
   root 'login#new'
 
    #  does autentication
    post "/login/autentication" => "login#autentication", as: :autentication
+
+  #  schedullers
+     post "/schedullers/confirm_client" => "schedullers#confirm_client", as: :confirm_client
+     get "/schedullers/scheduller_filter_day" => "schedullers#scheduller_filter_day", as: :scheduller_filter_day
+     get "/schedullers/scheduller_day" => "schedullers#scheduller_day", as: :scheduller_day
+     get "/schedullers/confirm_scheduller" => "schedullers#confirm_scheduller", as: :confirm_scheduller
+     get "/schedullers/alter_scheduller" => "schedullers#alter_scheduller", as: :alter_scheduller     
+     post "/schedullers/save_scheduller" => "schedullers#save_scheduller", as: :save_scheduller
+
+ # end schedullers
+
+
    get "/login/home" => "login#home", as: :home
    get "/login/logout" => "login#logout", as: :logout
+   get "/clients/find_client" => "clients#find_clients", as: :find_clients
 
+   resources :clients
+   resources :schedullers
+   resources :companies
+   resources :agreements
+   resources :professionals
+   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

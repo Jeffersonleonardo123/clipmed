@@ -1,0 +1,48 @@
+<div class="col-md-12">
+        <table class="table table-bordered table-striped">
+          <thead class="head-table">
+            <tr>
+              <th>Confirmado</th>
+              <th>Hora</th>
+              <th>Final</th>
+              <th>Paciente</th>
+              <th>Celular</th>
+              <th>Telefone <i class="material-icons md-18 icon-title">call</i></th>
+              <th>Eventos</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @schedullers.each do |scheduller| %>
+                <tr class="<%= cycle("line-table", "danger") -%>">
+                  <% if scheduller.status == "confirmed" %>
+                    <td style="align:center;">  <i class="material-icons md-28">check_box</i> </td>
+                <%end%>
+                <% if scheduller.status != "confirmed"%>
+                    <td>  <i class="material-icons md-28">check_box_outline_blank</i></td>
+                <%end%>
+
+
+                <td><%= scheduller.time_marked.strftime("%H:%M") %></td>
+                <td><%= scheduller.time_marked_end.strftime("%H:%M") %></td>
+                <td><%= scheduller.name %></td>
+                <td><%= scheduller.celphone %></td>
+                <td><%= scheduller.phone %></td>
+                <td>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-info dropdown-toggle btn-sm btn-clips" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Opções <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li><button type="button" name="btn_edit_scheduller" id="<%= scheduller.id %>" class="btn_edit_scheduller btn btn-primary btn-sm btn-block" >Editar</li>
+                        <li role="separator" class="divider"></li>
+                        <li><%= link_to 'Excluir', scheduller,class: "btn btn-danger btn-sm ", method: :delete, data: { confirm: 'Confirma a Exclusão?' }%></li>
+                      </ul>
+                      </div>
+                    </div>
+                </td>
+              </tr>
+            </tbody>
+            <% end %>
+        <!-- </table> -->
+</div>
