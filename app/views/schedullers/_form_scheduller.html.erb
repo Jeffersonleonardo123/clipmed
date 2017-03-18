@@ -1,3 +1,4 @@
+
 <form id="scheduller-form" action="index.html" method="post">
       <input type="hidden" id="id" name="id" value="<%= @scheduller.id%>">
       <div class="col-md-3 div-inter">   <!-- Formulario de cadastro  -->
@@ -35,7 +36,7 @@
          </select>
       </div>
       <div class="row">
-          <select id="professional_id" name="professional_id" class="form-control"style="width: 100%;">
+          <select id="agreement_id" name="agreement_id" class="form-control"style="width: 100%;">
             <%= @agreements.each do |agreement| %>
                   <% if @scheduller.agreement_id == agreement.id %>
                     <option selected="true" value="<%= agreement.id%>"><%= agreement.name%></option>

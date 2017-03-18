@@ -26,7 +26,12 @@
 								<% schedullers.each do |scheduller| %><br>
 								<tr>
 									<td style="height:0px;"><%= scheduller.time_marked.strftime("%H:%M")%></td>
-									<td style="height:0px;"><%= scheduller.time_marked_end.strftime("%H:%M")%></td>
+									<td style="height:0px;">
+										<%if scheduller.time_marked_end %>
+		                  <%= scheduller.time_marked_end.strftime("%H:%M") %>
+		                <%end%>
+
+									</td>
 									<td style="height:0px;"><%= scheduller.name[0..5] %></td>
 								</tr>
 								<% end %>

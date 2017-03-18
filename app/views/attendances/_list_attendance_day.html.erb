@@ -15,7 +15,7 @@
           <tbody>
             <% @schedullers.each do |scheduller| %>
                 <tr class="<%= cycle("line-table", "danger") -%>">
-                  <% if scheduller.status == "confirmed" %>
+                <% if scheduller.status == "confirmed" %>
                     <td style="align:center;">  <i class="material-icons md-28">check_box</i> </td>
                 <%end%>
                 <% if scheduller.status != "confirmed"%>
@@ -23,11 +23,19 @@
                 <%end%>
 
                 <td><%= scheduller.time_marked.strftime("%H:%M") %></td>
-                <td><%= scheduller.time_marked_end.strftime("%H:%M") %></td>
+                <td>
+                  <%if scheduller.time_marked_end %>
+                    <%= scheduller.time_marked_end.strftime("%H:%M") %>
+                  <%end%>
+                </td>
                 <td><%= scheduller.name %></td>
                 <td><%= scheduller.celphone %></td>
                 <td><%= scheduller.phone %></td>
-                <td><%= link_to 'Atender',new_attendance_path(:scheduller_id => scheduller.id),class: "btn btn-info btn-sm "%></td>
+                <td>
+                  <% if scheduller.status == "confirmed" %>
+                      <%= link_to 'Atender',new_attendance_path(:scheduller_id => scheduller.id),class: "btn btn-info btn-sm "%>
+                  <%end%>
+                </td>
               </tr>
             </tbody>
             <% end %>

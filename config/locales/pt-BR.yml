@@ -5,7 +5,26 @@ pt-BR:
     models:
         room: Quarto
         user: Usuário
+        client: Paciente
     attributes:
+      client:
+          name: Nome
+          address: Endereço
+          number: Numero
+          neighborhood: Bairro
+      professional:
+          name: Nome
+          address: Endereço
+          number: Numero
+          neighborhood: Bairro
+      company:
+        name: Nome
+      agreement:
+        name: Nome
+        professional_id: Médico
+        time_marked: Hora
+        date: Data
+        agreement_id: Convênio
       user:
         bio: Biografia
         email: Email
@@ -17,7 +36,7 @@ pt-BR:
         description: Descrição
         location: Localização
         title: Título
-    
+
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'

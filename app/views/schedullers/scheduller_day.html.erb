@@ -7,6 +7,8 @@
   </div>
 </div>
 
+
+
 <div class="col-md-12">
   <div class="row">
         <div class="col-md-12 div-inter">
@@ -181,6 +183,8 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
+
+
           $("#celphone").inputmask({"mask": "(99) 99999-9999"});
           $("#phone").inputmask({"mask": "(99) 99999-9999"});
 
@@ -208,6 +212,26 @@
         // Save scheduller
         $('body').on('click', '#btnSave', function(event){
           event.preventDefault();
+
+          var msg = '';
+          if(document.getElementById('date').value == ""  ){
+            msg = msg + ' Data, '
+          }
+          if(document.getElementById('time_marked').value == ""  ){
+            msg = msg + ' Hora, '
+          }
+          if(document.getElementById('agreement_id').value == ""  ){
+            msg = msg + ' Convênio, '
+          }
+          if(document.getElementById('name').value == ""  ){
+            msg = msg + ' Nome ';
+          }
+
+          if(msg != ""){
+            alert('Campos Obrigatórios: ' + msg);
+            return;
+          }
+
 
           var id = document.getElementById('client_id').value;
           var status = document.getElementById('status').value;

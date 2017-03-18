@@ -1,69 +1,71 @@
 <% content_for :title do %>
   ClipMed
 <% end %>
-
-      <div class="row">
-        <div class="col-md-6">
-          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-          <div id="piechart" style="width: 900px; height: 500px;"></div>
-        </div>
-        <div class="col-md-6">
-          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-          <div id="chart_div"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <div style="background:#FA2A02; border-radius:0px; color:#FFFFFF" class="panel panel-primary">
+        <div class="panel-body">
+          <div class="col-md-4">
+              <i class="material-icons md-48 icon-title">accessible</i>
+              <span class="badge" style="background:#FFFFFF;color:black;">Pacientes</span>
+          </div>
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+              <h1><%= @count_client%></h1>
+          </div>
         </div>
       </div>
+    </div>
 
+    <div class="col-md-3">
+      <div style="background:#FFB402; border-radius:0px; color:#FFFFFF" class="panel panel-primary">
+        <div class="panel-body">
+          <div class="col-md-4">
+              <i class="material-icons md-48 icon-title">local_hospital</i>
+              <span class="badge" style="background:#FFFFFF;color:black;">Médicos</span>
+          </div>
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+              <h1><%= @count_profissional%></h1>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
+    <div class="col-md-3">
+      <div style="background:#21A7F0; border-radius:0px; color:#FFFFFF" class="panel panel-primary">
+        <div class="panel-body">
+          <div class="col-md-4">
+              <i class="material-icons md-48 icon-title">wc</i>
+              <span class="badge" style="background:#FFFFFF;color:black;">Convênios</span>
+          </div>
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+            <h1><%= @count_agreement%></h1>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
+    <div class="col-md-3">
+      <div style="background:#258677; border-radius:0px; color:#FFFFFF" class="panel panel-primary">
+        <div class="panel-body">
+          <div class="col-md-4">
+              <i class="material-icons md-48 icon-title">content_paste</i>
+              <span class="badge" style="background:#FFFFFF;color:black;">Prontuarios</span>
+          </div>
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+            <h1><%= @count_attendances%></h1>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        var options = {
-          title: 'My Daily Activities'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-
-      google.charts.load('current', {packages: ['corechart', 'bar']});
-      google.charts.setOnLoadCallback(drawMultSeries);
-
-      function drawMultSeries() {
-            var data = google.visualization.arrayToDataTable([
-              ['City', '2010 Population', '2000 Population'],
-              ['New York City, NY', 8175000, 8008000],
-              ['Los Angeles, CA', 3792000, 3694000],
-              ['Chicago, IL', 2695000, 2896000],
-              ['Houston, TX', 2099000, 1953000],
-              ['Philadelphia, PA', 1526000, 1517000]
-            ]);
-
-            var options = {
-              title: 'Population of Largest U.S. Cities',
-              chartArea: {width: '50%'},
-              hAxis: {
-                title: 'Total Population',
-                minValue: 0
-              },
-              vAxis: {
-                title: 'City'
-              }
-            };
-
-            var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-          }
-    </script>
+  </div>
+</div>

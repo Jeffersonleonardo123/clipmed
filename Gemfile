@@ -44,5 +44,5 @@ gem "watu_table_builder", :require => "table_builder"
 gem 'bootstrap-datepicker-rails'
 gem 'material_icons'
 gem 'jquery-inputmask-rails'
-
+gem 'rails-i18n','~> 4.0.0'
 ruby '2.3.0'

@@ -10,8 +10,6 @@
 <%= form_for @attendance ,:html => {:class => "form-horizontal center"}  do |f| %>
   <% if @attendance.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@attendance.errors.count, "error") %> prohibited this client from being saved:</h2>
-
       <ul>
       <% @client.errors.full_messages.each do |message| %>
         <li><%= message %></li>

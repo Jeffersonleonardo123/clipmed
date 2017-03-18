@@ -24,7 +24,11 @@
 
 
                 <td><%= scheduller.time_marked.strftime("%H:%M") %></td>
-                <td><%= scheduller.time_marked_end.strftime("%H:%M") %></td>
+                <td>
+                <%if scheduller.time_marked_end %>
+                  <%= scheduller.time_marked_end.strftime("%H:%M") %>
+                <%end%>
+                </td>
                 <td><%= scheduller.name %></td>
                 <td><%= scheduller.celphone %></td>
                 <td><%= scheduller.phone %></td>
