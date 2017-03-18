@@ -2,6 +2,7 @@ require "bcrypt"
 
 class User < ActiveRecord::Base
   belongs_to :company
+  has_many :attendances  
 
   def password=(new_password)
     @password = new_password

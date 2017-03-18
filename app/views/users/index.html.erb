@@ -1,35 +1,63 @@
-<div class="col-lg-12">
-    <div class="col-lg-2">
-    </div>
-    <div class="col-lg-8">
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <i class="material-icons md-48 icon-title">accessibility</i>
+    <label class="label-title">Usuarios</label>
+  </div>
 
-        <h1>Usuarios</h1>
-        </br>
-        </br>
-        <div class="row">
-            <%= link_to 'Novo', new_user_path,:class =>'btn btn-primary' %>
+</div>
+<div class="row">
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-10 div-inter">
+        <br>
+        <div class="form-group">
+          <%= link_to new_user_path, class: "btn btn-info btn-sm " do %>
+              Cadastrar
+          <% end %>
         </div>
-        </br>
-        </br>
-
-        <table class="table table-striped">
-          <thead>
-            <tr>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @users.each do |user| %>
-              <tr>
-                <td><%= user.name %></td>
-                <td><%= user.email %></td>
-                <td><%= link_to 'Editar', edit_user_path(user),{:class =>'btn btn-primary'}%></td>
-                <td><%= link_to 'Excluir', user,:class =>'btn btn-danger', method: :delete, data: { confirm: 'Confirma a Exclusão?' }%></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+      </div>
     </div>
-    <div class="col-lg-2">
+    <div class="row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-10 div-inter">
+            <p id="notice"><%= notice %></p>
+            <table class="table table-bordered table-striped">
+              <thead class="head-table">
+                <tr>
+                  <th>Nome</th>
+                  <th>Eventos</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @users.each do |user| %>
+                    <tr class="<%= cycle("warning", "danger") -%>">
+                    <td><%= user.name %></td>
+                    <td>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-info dropdown-toggle btn-sm btn-clips" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Opções <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><%= link_to 'Editar',   edit_user_path(user),class: "btn btn-info btn-sm "%></li>
+                            <li role="separator" class="divider"></li>
+                            <li><%= link_to 'Excluir',  user,class: "btn btn-danger btn-sm ", method: :delete, data: { confirm: 'Confirma a Exclusão?' }%></li>
+                          </ul>
+                        </div>
+                    </div>
+
+                    </td>
+                  </tr>
+                </tbody>
+                <% end %>
+            </table>
+          </div>
+        </div>
+
     </div>
 <div>
+</div>

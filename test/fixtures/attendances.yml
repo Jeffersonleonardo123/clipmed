@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_id: 1
+  professional_id: 1
+  client_id: 1
+  agreement_id: 1
+  date: 2017-03-03 17:30:21
+  acompanhante: MyString
+  antecedentes: MyText
+  habitos: MyText
+  isda: MyText
+  exame_fisico: MyText
+  diagnostico: MyText
+  conduta: MyText
+
+two:
+  company_id: 1
+  professional_id: 1
+  client_id: 1
+  agreement_id: 1
+  date: 2017-03-03 17:30:21
+  acompanhante: MyString
+  antecedentes: MyText
+  habitos: MyText
+  isda: MyText
+  exame_fisico: MyText
+  diagnostico: MyText
+  conduta: MyText

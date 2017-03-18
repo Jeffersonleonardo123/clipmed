@@ -3,3 +3,6 @@ $('#div_list_scheduller').html("<%= j render(:partial => 'list_scheduller_day') 
 
 //scheduller month
 $('#div_month').html("<%= j render(:partial => 'month') %>")
+
+$('#date_find').val("<%= @date %>")
+$('#btnFiltrar').focus()

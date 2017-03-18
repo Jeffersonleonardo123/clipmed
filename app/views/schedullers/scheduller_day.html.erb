@@ -66,6 +66,21 @@
             </div>
 
             <div class="row">
+                <select id="tipo_atendimento" name="tipo_atendimento" class="form-control"style="width: 100%;">
+                    <option value="CONSULTA">CONSULTA</option>
+                    <option value="RETORNO">RETORNO</option>
+               </select>
+            </div>
+
+            <div class="row">
+                <select id="agreement_id" name="agreement_id" class="form-control"style="width: 100%;">
+                  <%= @agreements.each do |agreement| %>
+                          <option value="<%= agreement.id%>"><%= agreement.name%></option>
+                <% end %>
+               </select>
+            </div>
+
+            <div class="row">
                 <select id="professional_id" name="professional_id" class="form-control"style="width: 100%;">
                   <%= @professionals.each do |professional| %>
                         <option value="<%= professional.id%>"><%= professional.name%></option>
@@ -154,7 +169,7 @@
   </div> <!-- div principal 10 -md -->
 
 
-<div id="div_month">  
+<div id="div_month">
   <%= render 'month' %>
 </div>
 
@@ -204,34 +219,33 @@
           $.post("<%=save_scheduller_path%>",
                scheduller,
                function(data){
-                 $('#client_id').val()="";
+                    alert('Paciente salvo com sucesso!');
+                    clear_fields();
               });
 
         });
         //end save scheduller
 
         $('body').on('click', '#btnCancel', function(event){
-            document.getElementById("name").value = "";
-            document.getElementById("status").value = "not_confirmed"
-            document.getElementById("celphone").value = "";
-            document.getElementById("phone").value = "";
-            document.getElementById("observation").value = "";
-            document.getElementById("date").value = "";
-            document.getElementById("time_marked").value = "";
-            document.getElementById("date").focus();
+          clear_fields();
         });
 
         $('body').on('click', '#btnNew', function(event){
-            document.getElementById("name").value = "";
-            document.getElementById("status").value = "not_confirmed"
-            document.getElementById("celphone").value = "";
-            document.getElementById("phone").value = "";
-            document.getElementById("observation").value = "";
-            document.getElementById("date").value = "";
-            document.getElementById("time_marked").value = "";
-            document.getElementById("date").focus();
+            clear_fields();
         });
 
+
+        function clear_fields(){
+          document.getElementById('client_id').value = "";
+          document.getElementById("name").value = "";
+          document.getElementById("status").value = "not_confirmed"
+          document.getElementById("celphone").value = "";
+          document.getElementById("phone").value = "";
+          document.getElementById("observation").value = "";
+          document.getElementById("date").value = "";
+          document.getElementById("time_marked").value = "";
+          document.getElementById("tipo_atendimento").value = "CONSULTA"
+        }
 
         // FILTER schedullers
         $('body').on('click', '#btnFiltrar', function(event){

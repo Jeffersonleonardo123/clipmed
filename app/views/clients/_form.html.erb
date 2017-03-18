@@ -108,6 +108,10 @@
                      <label>Médico:</label>
                      <%= f.collection_select :professional_id, @professionals, :id, :name, {"include_blank"=>"false"},{class:"form-control input-sm"}%>
                   </div>
+                  <div class="col-md-3 ">
+                     <label>Nascimento:</label>
+                     <%= f.text_field :nascimento, :class =>"form-control input-sm",:data=> {:mask=> '99/99/9999'} %>
+                  </div>
               </div>
           </div>
           <div class="row">

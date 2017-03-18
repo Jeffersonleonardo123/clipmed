@@ -1,0 +1,195 @@
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <i class="material-icons md-48 icon-title">content_paste</i>
+    <label class="label-title">Prontuario</label>
+  </div>
+</div>
+
+<%= form_for @attendance ,:html => {:class => "form-horizontal center"}  do |f| %>
+  <% if @attendance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@attendance.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+      <% @client.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :company_id, :value =>  current_user.company_id %>
+  <%= f.hidden_field :user_id, :value =>  current_user.id %>
+  <%= f.hidden_field :client_id, :value => @client.id %>
+  <%= f.hidden_field :tipo_atendimento, :value => @scheduller.tipo_atendimento %>
+  <%= f.hidden_field :agreement_id, :value => @scheduller.agreement.id %>
+
+
+  <div class="col-lg-11  div-inter">
+            <br>
+
+            <div class="row">
+                <div class="form-group">
+
+                    <div class="col-md-10 col-md-offset-1">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">
+                            <i class="material-icons md-48">person_pin</i>
+                              Informações do Paciente</h3>
+                        </div>
+                        <div class="panel-body">
+                          <div class="row">
+                              <div class="col-md-5">
+                                <label>Nome:</label>
+                                <%= @client.name %>
+                              </div>
+                              <div class="col-md-5">
+                                <label>Nascimento:</label>
+                                <%= @client.nascimento %>
+                              </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                              <label>Tipo Atendimento:</label>
+                              <%= @scheduller.tipo_atendimento %>
+                            </div>
+                            <div class="col-md-6">
+                              <label>Plano:</label>
+                              <%= @scheduller.agreement.name %>
+                            </div>
+
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-5 col-md-offset-1">
+                      <label>Médico:</label>
+                      <%= f.collection_select :professional_id, @professionals, :id, :name, {"include_blank"=>"false"},{class:"form-control input-sm"}%>
+                    </div>
+                    <div class="col-md-5">
+                      <label>acompanhante:</label>
+                      <%= f.text_field :acompanhante, :class =>"form-control input-sm text-uppercase" %>
+                     </div>
+                </div>
+            </div>
+            <% if not (@first_attendance) %>
+                  <div class="row">
+                      <div class="form-group">
+                          <div class="col-md-10 col-md-offset-1">
+                              <label>HMA:</label>
+                              <%= f.text_area :hma,rows:2, :class =>"form-control input-sm"%>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="form-group">
+                          <div class="col-md-10 col-md-offset-1">
+                              <label>Antacedentes:</label>
+                              <%= f.text_area :antecedentes,rows:2, :class =>"form-control input-sm"%>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="form-group">
+                          <div class="col-md-10 col-md-offset-1">
+                              <label>Medicamentos:</label>
+                              <%= f.text_area :medicamentos,rows:2, :class =>"form-control input-sm"%>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-1">
+                            <label>Habitos:</label>
+                            <%= f.text_area :habitos, rows:2,:class =>"form-control input-sm"%>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-1">
+                            <label>ISDA:</label>
+                            <%= f.text_area :isda,rows:2, :class =>"form-control input-sm"%>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-1">
+                            <label>Exame Fisico:</label>
+                            <%= f.text_area :exame_fisico,rows:5, :class =>"form-control input-sm"%>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-1">
+                            <label>Diagnostico:</label>
+                            <%= f.text_area :diagnostico, rows:2,:class =>"form-control input-sm"%>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-1">
+                            <label>Conduta:</label>
+                            <%= f.text_area :conduta, rows:3,:class =>"form-control input-sm"%>
+                        </div>
+                    </div>
+                  </div>
+            <% end %>
+            <% if (@first_attendance) %>
+                 <div class="row">
+                   <div class="form-group">
+                     <div class="col-md-10 col-md-offset-1">
+                       <label>Informações da Consulta:</label>
+                       <%= f.text_area :outras_informacoes, rows:3,:class =>"form-control input-sm"%>
+                     </div>
+                   </div>
+                 </div>
+
+            <% end %>
+
+
+          <div class="row">
+              <div class="form-group">
+                  <div class="col-md-2 col-md-offset-1">
+                    <%= f.submit 'Confirmar', :class =>"btn btn-primary btn-block btn-sm" %>
+                  </div>
+                  <div class="col-md-2">
+                    <%= link_to 'Cancelar', attendance_day_path,{:class =>"btn btn-danger btn-block  btn-sm"}%>
+                  </div>
+              </div>
+          </div>
+
+          <% if (@first_attendance) %>
+            <div class="col-md-10">
+              <br>
+              <h2>Historico do Paciente</h2>
+              <i class="material-icons md-48">file_download</i>
+              <br>
+            </div>
+
+
+            <%= render 'history_list_attendance' %>
+
+            <%= render 'history_anaminese' %>
+          <% end %>
+
+</div>
+
+<br>
+<br>
+<% end %>

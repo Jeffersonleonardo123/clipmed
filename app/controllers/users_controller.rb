@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @user.company_id = currency_user.company_id
+    @user.company_id = current_user.company_id
   end
 
   # GET /users/1/edit
@@ -72,6 +72,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :id_company, :email, :password, :adm)
+      params.require(:user).permit(:name, :company_id, :email, :password, :adm)
     end
 end

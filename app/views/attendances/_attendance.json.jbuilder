@@ -1,0 +1,2 @@
+json.extract! attendance, :id, :company_id, :professional_id, :client_id, :agreement_id, :date, :acompanhante, :antecedentes, :habitos, :isda, :exame_fisico, :diagnostico, :conduta, :created_at, :updated_at
+json.url attendance_url(attendance, format: :json)

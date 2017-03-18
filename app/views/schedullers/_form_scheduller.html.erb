@@ -20,6 +20,33 @@
               <input type="time" id="time_marked_end" name="time_marked_end" value="<%= @scheduller.time_marked_end.strftime('%H:%M') %>" class="form-control input-sm" placeholder="Hora">
             </div>
       </div>
+      <div class="row">
+          <select id="tipo_atendimento" name="tipo_atendimento" class="form-control"style="width: 100%;">
+              <option value="confirmed">CONSULTA</option>
+              <option value="not_confirmed">RETORNO</option>
+
+              <% if @scheduller.tipo_atendimento == "CONSULTA" %>
+                <option selected="true" value="CONSULTA">CONSULTA</option>
+              <% end %>
+              <% if @scheduller.tipo_atendimento != "CONSULTA" %>
+                <option selected="true" value="RETORNO">RETORNO</option>
+              <% end %>
+
+         </select>
+      </div>
+      <div class="row">
+          <select id="professional_id" name="professional_id" class="form-control"style="width: 100%;">
+            <%= @agreements.each do |agreement| %>
+                  <% if @scheduller.agreement_id == agreement.id %>
+                    <option selected="true" value="<%= agreement.id%>"><%= agreement.name%></option>
+                  <% end %>
+                  <% if @scheduller.agreement_id != agreement.id %>
+                    <option value="<%= agreement.id%>"><%= agreement.name%></option>
+                  <% end %>
+          <% end %>
+         </select>
+      </div>
+
 
       <div class="row">
           <select id="professional_id" name="professional_id" class="form-control"style="width: 100%;">
@@ -99,7 +126,8 @@
       </div>
 
     </form>
-
+    <br>
+    <br>
 
     <script type="text/javascript">
       $(document).ready(function(){

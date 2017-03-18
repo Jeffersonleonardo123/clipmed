@@ -1,0 +1,97 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+
+        <span class="badge">Atendimento dia <%= @first_attendance.created_at %></span>
+        <span class="badge"> Profissional <%= @first_attendance.professional.name %></span>
+    </h3>
+  </div>
+  <div class="panel-body">
+
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+            <label>HMA:</label>
+            <textarea class="form-control input-sm" disabled>
+                <%= @first_attendance.hma%>
+            </textarea>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+            <label>Antacedentes:</label>
+            <textarea class="form-control input-sm" disabled>
+                <%= @first_attendance.antecedentes%>
+            </textarea>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-10 col-md-offset-1">
+            <label>Medicamentos:</label>
+            <textarea class="form-control input-sm" disabled>
+                <%= @first_attendance.medicamentos%>
+            </textarea>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+      <div class="col-md-10 col-md-offset-1">
+          <label>Habitos:</label>
+          <textarea class="form-control input-sm" disabled>
+              <%= @first_attendance.habitos%>
+          </textarea>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+      <div class="col-md-10 col-md-offset-1">
+          <label>ISDA:</label>
+          <textarea class="form-control input-sm" disabled>
+              <%= @first_attendance.isda%>
+          </textarea>
+
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+      <div class="col-md-10 col-md-offset-1">
+          <label>Exame Fisico:</label>
+          <textarea class="form-control input-sm" disabled>
+              <%= @first_attendance.exame_fisico%>
+          </textarea>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+      <div class="col-md-10 col-md-offset-1">
+          <label>Diagnostico:</label>
+          <textarea class="form-control input-sm" disabled>
+              <%= @first_attendance.diagnostico%>
+          </textarea>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+      <div class="col-md-10 col-md-offset-1">
+          <label>Conduta:</label>
+          <textarea class="form-control input-sm" disabled>
+              <%= @first_attendance.conduta%>
+          </textarea>
+      </div>
+  </div>
+</div>
+</div>
+</div>

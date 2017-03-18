@@ -15,7 +15,7 @@ class CreateClients < ActiveRecord::Migration
       t.string :state
       t.text :observation
       t.string :situation
-
+      t.date :nascimento
       t.timestamps null: false
     end
   end

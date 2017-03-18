@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Attendances</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Professional</th>
+      <th>Client</th>
+      <th>Agreement</th>
+      <th>Date</th>
+      <th>Acompanhante</th>
+      <th>Antecedentes</th>
+      <th>Habitos</th>
+      <th>Isda</th>
+      <th>Exame fisico</th>
+      <th>Diagnostico</th>
+      <th>Conduta</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attendances.each do |attendance| %>
+      <tr>
+        <td><%= attendance.company_id %></td>
+        <td><%= attendance.professional_id %></td>
+        <td><%= attendance.client_id %></td>
+        <td><%= attendance.agreement_id %></td>
+        <td><%= attendance.date %></td>
+        <td><%= attendance.acompanhante %></td>
+        <td><%= attendance.antecedentes %></td>
+        <td><%= attendance.habitos %></td>
+        <td><%= attendance.isda %></td>
+        <td><%= attendance.exame_fisico %></td>
+        <td><%= attendance.diagnostico %></td>
+        <td><%= attendance.conduta %></td>
+        <td><%= link_to 'Show', attendance %></td>
+        <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
+        <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attendance', new_attendance_path %>

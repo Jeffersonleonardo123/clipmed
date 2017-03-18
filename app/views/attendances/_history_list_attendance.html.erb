@@ -1,0 +1,16 @@
+<% @history_list.each do |atendences_hist| %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+
+        <span class="badge">Atendimento dia <%= atendences_hist.created_at %></span>
+        <span class="badge"> Profissional: <%= atendences_hist.professional.name %></span>
+    </h3>
+  </div>
+  <div class="panel-body">
+      <textarea class="form-control input-sm" disabled>
+          <%= atendences_hist.outras_informacoes%>
+      </textarea>
+    </div>
+  </div>
+<%end%>

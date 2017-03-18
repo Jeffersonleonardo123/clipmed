@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @attendance.company_id %>
+</p>
+
+<p>
+  <strong>Professional:</strong>
+  <%= @attendance.professional_id %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @attendance.client_id %>
+</p>
+
+<p>
+  <strong>Agreement:</strong>
+  <%= @attendance.agreement_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @attendance.date %>
+</p>
+
+<p>
+  <strong>Acompanhante:</strong>
+  <%= @attendance.acompanhante %>
+</p>
+
+<p>
+  <strong>Antecedentes:</strong>
+  <%= @attendance.antecedentes %>
+</p>
+
+<p>
+  <strong>Habitos:</strong>
+  <%= @attendance.habitos %>
+</p>
+
+<p>
+  <strong>Isda:</strong>
+  <%= @attendance.isda %>
+</p>
+
+<p>
+  <strong>Exame fisico:</strong>
+  <%= @attendance.exame_fisico %>
+</p>
+
+<p>
+  <strong>Diagnostico:</strong>
+  <%= @attendance.diagnostico %>
+</p>
+
+<p>
+  <strong>Conduta:</strong>
+  <%= @attendance.conduta %>
+</p>
+
+<%= link_to 'Edit', edit_attendance_path(@attendance) %> |
+<%= link_to 'Back', attendances_path %>

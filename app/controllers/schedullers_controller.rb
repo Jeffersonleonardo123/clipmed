@@ -5,6 +5,7 @@ class SchedullersController < ApplicationController
   # GET /schedullers.json
   def index
     @schedullers = current_user.company.schedullers.all
+    @agreements            = current_user.company.agreements.all
   	@date = params[:month] ? Date.parse(params[:month]) : Date.today
   end
 
@@ -17,6 +18,7 @@ class SchedullersController < ApplicationController
   def new
     # @client = Client.new
     @professionals         = current_user.company.professionals.all
+    @agreements            = current_user.company.agreements.all
     @scheduller            = Scheduller.new
     @scheduller.company_id = current_user.company_id
     @scheduller.user_id    = current_user.id
@@ -25,6 +27,8 @@ class SchedullersController < ApplicationController
   end
 
   def alter_scheduller
+    @agreements            = current_user.company.agreements.all
+
     @professionals         = current_user.company.professionals.all
     @scheduller = Scheduller.find(params['scheduller_id'])
   end
@@ -51,6 +55,8 @@ class SchedullersController < ApplicationController
       scheduller.status      = params['status']
       scheduller.celphone    = params['celphone']
       scheduller.phone       = params['phone']
+      scheduller.tipo_atendimento = params['tipo_atendimento']
+      scheduller.agreement_id = params['agreement_id']
 
       if(params['client_id'])
         scheduller.client_id   = params['client_id']
@@ -60,13 +66,18 @@ class SchedullersController < ApplicationController
 
       @schedullers = current_user.company.schedullers.order(:time_marked).
       where("date = ? and professional_id = ?",params[:date].to_date,params[:professional_id]) ;
+
+      @schedullers_month = current_user.company.schedullers.order(:time_marked).
+      where("professional_id = ?",params[:professional_id]) ;
+
+      @date = params[:month] ? Date.parse(params[:month]) : params[:date].to_date
       render "scheduller_filter_day"
+
   end
 
   # POST /schedullers
   # POST /schedullers.json
   def create
-    puts params['date']
     @scheduller = Scheduller.new(scheduller_params)
     if params['client_id'] != ''
       @scheduller.client_id = params['client_id']
@@ -116,6 +127,7 @@ class SchedullersController < ApplicationController
 
 
   def scheduller_day
+    @agreements     = current_user.company.agreements.all
     @professionals  = current_user.company.professionals.all
     @schedullers = current_user.company.schedullers.all
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
@@ -124,12 +136,13 @@ class SchedullersController < ApplicationController
   def scheduller_filter_day
       @date = params[:month] ? Date.parse(params[:month]) : params[:date_find].to_date
 
-
       @schedullers = current_user.company.schedullers.order(:time_marked).
       where("date = ? and professional_id = ?",params[:date_find].to_date,params[:professional_id]) ;
 
       @schedullers_month = current_user.company.schedullers.order(:time_marked).
       where("professional_id = ?",params[:professional_id]) ;
+
+      @professional_id = params[:professional_id]
 
   end
 
@@ -141,6 +154,8 @@ class SchedullersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def scheduller_params
-      params.require(:scheduller).permit(:company_id, :user_id, :client_id, :professional_id, :date,  :time_marked, :observation, :name, :time_marked_end, :status, :celphone, :phone)
+      params.require(:scheduller).permit(:company_id, :user_id, :client_id, :professional_id,:agreement_id,
+                                         :date,  :time_marked, :observation, :name, :time_marked_end,
+                                         :status, :celphone, :phone, :tipo_atendimento)
     end
     end

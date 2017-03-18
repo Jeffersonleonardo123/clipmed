@@ -1,38 +1,68 @@
-<div class="col-lg-12">
-    <div class="col-lg-1">
-    </div>
-    <div class="col-lg-10">
-        <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <i class="material-icons md-48 icon-title">account_balance</i>
+    <label class="label-title">Empresas</label>
+  </div>
 
-        <h1>Empresas</h1>
-        </br>
-        </br>
-        <div class="row">
-            <%= link_to 'Nova Empresa', new_company_path,:class =>'btn btn-primary' %>
+</div>
+<div class="row">
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-10 div-inter">
+        <br>
+        <div class="form-group">
+          <%= link_to new_company_path, class: "btn btn-info btn-sm " do %>
+              Cadastrar
+          <% end %>
         </div>
-        </br>
-        </br>
-
-        <table class="table table-striped">
-          <thead>
-            <tr>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @companies.each do |company| %>
-              <tr>
-                <td><%= company.name %></td>
-                <td><%= number_with_delimiter(company.cnpj, delimiter: ".") %></td>
-                <td><%= number_to_phone(company.fone) %></td>
-                <td><%= company.email %></td>
-                <td><%= link_to 'Editar', edit_company_path(company),{:class =>'btn btn-primary'}%></td>
-                <td><%= link_to 'Excluir', company,:class =>'btn btn-danger', method: :delete, data: { confirm: 'Confirma a Exclusão?' }%></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+      </div>
     </div>
-    <div class="col-lg-1">
+    <div class="row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-10 div-inter">
+            <p id="notice"><%= notice %></p>
+            <table class="table table-bordered table-striped">
+              <thead class="head-table">
+                <tr>
+                  <th>Nome</th>
+                  <th>Cpf</th>
+                  <th>Telefone <i class="material-icons md-18 icon-title">call</i></th>
+                  <th>Eventos</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                    <% @companies.each do |company| %>
+                    <tr class="<%= cycle("warning", "danger") -%>">
+                      <td><%= company.name %></td>
+                      <td><%= number_with_delimiter(company.cnpj, delimiter: ".") %></td>
+                      <td><%= number_to_phone(company.fone) %></td>
+                      <td><%= company.email %></td>
+                    <td>
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-info dropdown-toggle btn-sm btn-clips" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Opções <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li><%= link_to 'Editar',   edit_company_path(company),class: "btn btn-info btn-sm "%></li>
+                            <li role="separator" class="divider"></li>
+                            <li><%= link_to 'Excluir',  company,class: "btn btn-danger btn-sm ", method: :delete, data: { confirm: 'Confirma a Exclusão?' }%></li>
+                          </ul>
+                        </div>
+                    </div>
+
+                    </td>
+                  </tr>
+                </tbody>
+                <% end %>
+            </table>
+          </div>
+        </div>
+
     </div>
 <div>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210000808) do
+ActiveRecord::Schema.define(version: 20170303203021) do
 
   create_table "agreements", force: :cascade do |t|
     t.string   "name"
@@ -30,6 +30,25 @@ ActiveRecord::Schema.define(version: 20170210000808) do
     t.text     "site"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "attendances", force: :cascade do |t|
+    t.integer  "company_id"
+    t.integer  "professional_id"
+    t.integer  "client_id"
+    t.integer  "user_id"
+    t.integer  "agreement_id"
+    t.datetime "date"
+    t.string   "acompanhante"
+    t.string   "status"
+    t.text     "antecedentes"
+    t.text     "habitos"
+    t.text     "isda"
+    t.text     "exame_fisico"
+    t.text     "diagnostico"
+    t.text     "conduta"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "clients", force: :cascade do |t|
@@ -92,16 +111,20 @@ ActiveRecord::Schema.define(version: 20170210000808) do
   end
 
   create_table "schedullers", force: :cascade do |t|
-    t.string   "company_id"
+    t.integer  "company_id"
     t.integer  "user_id"
-    t.integer  "client_id"
     t.integer  "professional_id"
-    t.string   "date"
-    t.date     "date_marked"
     t.time     "time_marked"
     t.text     "observation"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.date     "date"
+    t.time     "time_marked_end"
+    t.string   "celphone"
+    t.string   "phone"
+    t.string   "status"
+    t.integer  "client_id"
+    t.string   "name"
   end
 
   create_table "users", force: :cascade do |t|

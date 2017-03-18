@@ -13,6 +13,8 @@ class CreateSchedullers < ActiveRecord::Migration
       t.string :name
       t.text :observation
       t.text :status
+      t.string :agreement_id
+      t.string :tipo_atendimento
       t.timestamps null: false
     end
   end
