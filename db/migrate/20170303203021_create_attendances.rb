@@ -18,7 +18,7 @@ class CreateAttendances < ActiveRecord::Migration
       t.text :hma
       t.time :time_begin
       t.time :time_end
-      t.string: tipo_atendimento
+      t.string :tipo_atendimento
       t.text :medicamentos
       t.text :outras_informacoes
       t.timestamps null: false
