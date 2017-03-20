@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   #  begin
   root 'login#new'
 
-   #  does autentication
-   post "/login/autentication" => "login#autentication", as: :autentication
 
   #  schedullers
      post "/schedullers/confirm_client" => "schedullers#confirm_client", as: :confirm_client
@@ -18,12 +16,17 @@ Rails.application.routes.draw do
  # attendances
     get "/attendances/attendance_day" => "attendances#attendance_day", as: :attendance_day
     get "/schedullers/attendance_filter_day" => "attendances#attendance_filter_day", as: :attendance_filter_day
-
  # attendances end
 
-
+ # login
+   post "/login/autentication" => "login#autentication", as: :autentication
    get "/login/home" => "login#home", as: :home
    get "/login/logout" => "login#logout", as: :logout
+   get "/login/restart_login" => "login#restart_login", as: :restart_login
+   post "/login/save_new_password" => "login#save_new_password", as: :save_new_password
+
+# login end
+
    get "/clients/find_client" => "clients#find_clients", as: :find_clients
 
 

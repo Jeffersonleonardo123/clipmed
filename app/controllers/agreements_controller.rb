@@ -26,7 +26,6 @@ class AgreementsController < ApplicationController
   # POST /agreements.json
   def create
     @agreement = Agreement.new(agreement_params)
-
     respond_to do |format|
       if @agreement.save
         format.html { redirect_to @agreement, notice: 'Agreement was successfully created.' }

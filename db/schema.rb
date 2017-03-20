@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303203021) do
+ActiveRecord::Schema.define(version: 20170319143058) do
 
   create_table "agreements", force: :cascade do |t|
     t.string   "name"
@@ -47,8 +47,14 @@ ActiveRecord::Schema.define(version: 20170303203021) do
     t.text     "exame_fisico"
     t.text     "diagnostico"
     t.text     "conduta"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.text     "hma"
+    t.integer  "time_begin"
+    t.integer  "time_end"
+    t.string   "tipo_atendimento"
+    t.text     "medicamentos"
+    t.text     "outras_informacoes"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -69,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170303203021) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "professional_id"
+    t.date     "nascimento"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -116,8 +123,8 @@ ActiveRecord::Schema.define(version: 20170303203021) do
     t.integer  "professional_id"
     t.time     "time_marked"
     t.text     "observation"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.date     "date"
     t.time     "time_marked_end"
     t.string   "celphone"
@@ -125,6 +132,8 @@ ActiveRecord::Schema.define(version: 20170303203021) do
     t.string   "status"
     t.integer  "client_id"
     t.string   "name"
+    t.string   "tipo_atendimento"
+    t.integer  "agreement_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -136,6 +145,7 @@ ActiveRecord::Schema.define(version: 20170303203021) do
     t.datetime "updated_at",         null: false
     t.string   "adm"
     t.integer  "company_id"
+    t.string   "restart_login"
   end
 
 end

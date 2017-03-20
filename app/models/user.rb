@@ -2,11 +2,11 @@ require "bcrypt"
 
 class User < ActiveRecord::Base
   belongs_to :company
-  has_many :attendances  
+  has_many :attendances
 
   def password=(new_password)
     @password = new_password
-    self.encrypted_password = BCrypt::Password.create(@password)
+    self.encrypted_password = BCrypt::Password.create(@password.upcase)
   end
 
   def password
@@ -14,6 +14,6 @@ class User < ActiveRecord::Base
  end
 
   def valid_password?(password_to_validate)
-    BCrypt::Password.new(encrypted_password) == password_to_validate
+    BCrypt::Password.new(encrypted_password) == password_to_validate.upcase
   end
 end
