@@ -12,6 +12,9 @@ class LoginController < ApplicationController
   end
 
   def autentication
+    # admin@hotmail.com
+    # inicio@123
+    
     user = User.find_by_email(params[:user][:email])
 
     if (user && user.restart_login == "true" && params[:user][:password] == "inicio@123")
