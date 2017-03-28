@@ -1,12 +1,14 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
   before_action :get_professionals, only:[:new, :edit, :create, :update ]
+  before_filter :authorize_user
+
 
 
   # GET /clients
   # GET /clients.json
   def index
-    @clients = current_user.company.clients
+    @clients = current_user.company.clients.where('deleted_at IS NULL');
   end
 
   # GET /clients/1
@@ -30,7 +32,7 @@ class ClientsController < ApplicationController
     @client = Client.new(client_params)
     respond_to do |format|
       if @client.save
-        format.html { redirect_to @client, notice: 'Paciente salvo com sucesso.' }
+        format.html { redirect_to clients_path, notice: 'Paciente salvo com sucesso.' }
         format.json { render :show, status: :created, location: @client }
       else
         format.html { render :new }
@@ -44,13 +46,22 @@ class ClientsController < ApplicationController
   def update
     respond_to do |format|
       if @client.update(client_params)
-        format.html { redirect_to @client, notice: 'Paciente salvo com sucesso.' }
+        format.html { redirect_to clients_path, notice: 'Paciente salvo com sucesso.' }
         format.json { render :show, status: :ok, location: @client }
       else
         format.html { render :edit }
         format.json { render json: @client.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def delete_client_logic
+      @client = Client.find(params['id'])
+      @client.update(deleted_at: Date.today)
+      respond_to do |format|
+        format.html { redirect_to clients_url, notice: 'Paciente excluido com sucesso.' }
+        format.json { head :no_content }
+      end
   end
 
   # DELETE /clients/1
@@ -66,7 +77,7 @@ class ClientsController < ApplicationController
   def find_clients
     name = params[:name]
     @client = Client.new
-    @clients = Client.where("name LIKE ? ", "%#{name}%" )
+    @clients =   current_user.company.clients.where("name LIKE ? and deleted_at IS NULL", "%#{name}%" )
   end
 
   def scheduller_day

@@ -1,11 +1,13 @@
 class SchedullersController < ApplicationController
   before_action :set_scheduller, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize_user
+
 
   # GET /schedullers
   # GET /schedullers.json
   def index
-    @schedullers = current_user.company.schedullers.all
-    @agreements            = current_user.company.agreements.all
+    @schedullers = current_user.company.schedullers
+    @agreements  = current_user.company.agreements
   	@date = params[:month] ? Date.parse(params[:month]) : Date.today
   end
 
@@ -17,8 +19,8 @@ class SchedullersController < ApplicationController
   # GET /schedullers/new
   def new
     # @client = Client.new
-    @professionals         = current_user.company.professionals.all
-    @agreements            = current_user.company.agreements.all
+    @professionals         = current_user.company.professionals
+    @agreements            = current_user.company.agreements
     @scheduller            = Scheduller.new
     @scheduller.company_id = current_user.company_id
     @scheduller.user_id    = current_user.id
@@ -27,9 +29,8 @@ class SchedullersController < ApplicationController
   end
 
   def alter_scheduller
-    @agreements            = current_user.company.agreements.all
-
-    @professionals         = current_user.company.professionals.all
+    @agreements            = current_user.company.agreements
+    @professionals         = current_user.company.professionals
     @scheduller = Scheduller.find(params['scheduller_id'])
   end
 
@@ -127,9 +128,9 @@ class SchedullersController < ApplicationController
 
 
   def scheduller_day
-    @agreements     = current_user.company.agreements.all
-    @professionals  = current_user.company.professionals.all
-    @schedullers = current_user.company.schedullers.all
+    @agreements     = current_user.company.agreements
+    @professionals  = current_user.company.professionals
+    @schedullers = current_user.company.schedullers
     @date = params[:month] ? Date.parse(params[:month]) : Date.today
   end
 

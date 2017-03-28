@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319143058) do
+ActiveRecord::Schema.define(version: 20170322011610) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "agreements", force: :cascade do |t|
     t.string   "name"
@@ -30,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170319143058) do
     t.text     "site"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.datetime "deleted_at"
   end
 
   create_table "attendances", force: :cascade do |t|
@@ -76,6 +80,7 @@ ActiveRecord::Schema.define(version: 20170319143058) do
     t.datetime "updated_at",      null: false
     t.integer  "professional_id"
     t.date     "nascimento"
+    t.datetime "deleted_at"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -115,6 +120,7 @@ ActiveRecord::Schema.define(version: 20170319143058) do
     t.string   "function"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.datetime "deleted_at"
   end
 
   create_table "schedullers", force: :cascade do |t|
@@ -146,6 +152,7 @@ ActiveRecord::Schema.define(version: 20170319143058) do
     t.string   "adm"
     t.integer  "company_id"
     t.string   "restart_login"
+    t.datetime "deleted_at"
   end
 
 end

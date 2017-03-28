@@ -7,6 +7,10 @@ class LoginController < ApplicationController
     @count_attendances  = current_user.company.attendances.count
   end
 
+  def new
+    session[:user_id] = nil
+  end
+
   def autentication
     user = User.find_by_email(params[:user][:email])
 

@@ -1,49 +1,201 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-10">
+    <i class="material-icons md-48 icon-title">local_hospital</i>
+    <label class="label-title">Prontiarios</label>
+  </div>
 
-<h1>Listing Attendances</h1>
+</div>
+<div class="row">
+    <div class="row">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-10 div-inter">
+        <br>
+      </div>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Company</th>
-      <th>Professional</th>
-      <th>Client</th>
-      <th>Agreement</th>
-      <th>Date</th>
-      <th>Acompanhante</th>
-      <th>Antecedentes</th>
-      <th>Habitos</th>
-      <th>Isda</th>
-      <th>Exame fisico</th>
-      <th>Diagnostico</th>
-      <th>Conduta</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="row">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-10 div-inter">
+            <p id="notice"><%= notice %></p>
+            <div class="row">
 
-  <tbody>
-    <% @attendances.each do |attendance| %>
-      <tr>
-        <td><%= attendance.company_id %></td>
-        <td><%= attendance.professional_id %></td>
-        <td><%= attendance.client_id %></td>
-        <td><%= attendance.agreement_id %></td>
-        <td><%= attendance.date %></td>
-        <td><%= attendance.acompanhante %></td>
-        <td><%= attendance.antecedentes %></td>
-        <td><%= attendance.habitos %></td>
-        <td><%= attendance.isda %></td>
-        <td><%= attendance.exame_fisico %></td>
-        <td><%= attendance.diagnostico %></td>
-        <td><%= attendance.conduta %></td>
-        <td><%= link_to 'Show', attendance %></td>
-        <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
-        <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+              <div class="col-md-6  ">
+                  Convênio
+                  <select id="agreement_id" name="agreement_id" class="form-control"style="width: 100%;">
+                    <%= @agreements.each do |agreement| %>
+                            <option value="<%= agreement.id%>"><%= agreement.name%></option>
+                  <% end %>
+                 </select>
+              </div>
+              <div class="col-md-6  div-no-padding">
+                  Médicos
+                  <select id="professional_id" name="professional_id" class="form-control"style="width: 100%;">
+                    <%= @professionals.each do |professional| %>
+                          <option value="<%= professional.id%>"><%= professional.name%></option>
+                  <% end %>
+                 </select>
+              </div>
+            </div>
+            <br>
 
-<br>
+            <div class="row">
+              <div class="col-md-6 ">
+                Data Inicial
+                  <div class="field" >
+                    <div class="input-group">
+                      <span class="input-group-addon input-sm">
+                          <i class="material-icons md-18">date_range</i>
+                      </span>
+                      <input type="text" id="date_begin" name="" value="" class="datepicker form-control input-sm" placeholder="Data">
+                    </div>
+                  </div>
+              </div>
 
-<%= link_to 'New Attendance', new_attendance_path %>
+              <div class="col-md-6  div-no-padding">
+                  Data Final
+                  <div class="field" >
+                    <div class="input-group">
+                      <span class="input-group-addon input-sm">
+                          <i class="material-icons md-18">date_range</i>
+                      </span>
+                      <input type="text" id="date_end" name="" value="" class="datepicker form-control input-sm" placeholder="Data">
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-2">
+                <br>
+                <button type="button" name="button_find_client" id="button_find_client" class="btn btn-success btn-block btn-sm " data-toggle="modal" data-target="#modal_find_client">Buscar Paciente</button>
+              </div>
+              <div class="col-md-5">
+                Nome do paciente
+                <div class="form-group">
+                  <div id="div_inf_of_client">
+                    <input type="text" placeholder="digite o nome do Paciente" class="form-control  input-sm " name="name_find" id="name_find" value="">
+                    <input type="hidden" id="client_id" value="0" name="client_id" >
+
+                  </div>
+                  <div class="col-md-2 ">
+                  </div>
+                  <div class="col-md-10">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <br>
+                <div class="form-group">
+                  <button type="button" id="btnFiltrar" class="btn btn-info btn-block  btn-sm" name="button">Filtrar</button>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div id="div_list">
+                <table class="table table-bordered table-striped">
+                  <thead class="head-table">
+                    <tr>
+                      <th>Data</th>
+                      <th>Médico</th>
+                      <th>Paciente <i class="material-icons md-18 icon-title">call</i></th>
+                      <th>Convênio <i class="material-icons md-18 icon-title">call</i></th>
+                      <th>Eventos</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% @attendances.each do |attendances| %>
+                        <tr class="<%= cycle("warning", "danger") -%>">
+                        <td><%= attendances.date %></td>
+                        <td><%= attendances.professional.name%></td>
+                        <td><%= attendances.client.name %></td>
+                        <td><%= attendances.agreement.name %></td>
+                        <td>
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-info dropdown-toggle btn-sm btn-clips" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Opções <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu">
+                              </ul>
+                            </div>
+                        </div>
+
+                        </td>
+                      </tr>
+                    </tbody>
+                    <% end %>
+                </table>
+              </div>
+          </div>
+        </div>
+
+    </div>
+    <br>
+    <br>
+<div>
+</div>
+
+<%= render 'clients/modal_find_client' %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $('.datepicker').datepicker({
+        format: 'dd/mm/yyyy',
+        language: 'pt-BR',
+          autoclose: true
+  });
+  $(".datepicker").datepicker('setDate', new Date());
+  $('.datepicker').datepicker();
+
+
+  //MODAL FIND CLIENTS
+  $('body').on('click', '#button_make_find', function(){
+      $.get("<%=find_clients_path%>",
+              {'name':$("#name_find_client").val()},
+              function(data){
+
+              });
+  });
+  //END FIND
+
+  //MODAL CONFIRM CLIENT
+  $('body').on('click', '.btn_confirm_client', function(){
+          var id = $(this).attr('id');
+          $.post("<%=confirm_client_path%>",
+               {'client_id':id},
+              function(data){
+               }
+          );
+        $('#modal_find_client').modal('toggle')
+  });
+  //END CONFIRM
+
+
+  $('body').on('click', '#btnFiltrar', function(){
+     var name            = $('#name_find').val();
+     var professional_id = $('#professional_id').val();
+     var agreement_id    = $('#agreement_id').val();
+     var date_begin      = $('#date_begin').val();
+     var date_end        = $('#date_end').val();
+     var client_id        = $('#client_id').val();
+      $.get("<%=filter_attendance_path%>",
+             {
+               'client_id':client_id,
+               'professional_id':professional_id,
+               'agreement_id':agreement_id,
+               'date_begin':date_begin,
+               'date_end':date_end,
+             },
+           function(data){
+          }
+        );
+  });
+
+});
+
+</script>

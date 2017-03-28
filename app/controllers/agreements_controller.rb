@@ -1,10 +1,12 @@
 class AgreementsController < ApplicationController
   before_action :set_agreement, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize_user
+
 
   # GET /agreements
   # GET /agreements.json
   def index
-    @agreements = Agreement.all
+    @agreements = current_user.company.agreements.where('deleted_at IS NULL')
   end
 
   # GET /agreements/1
@@ -28,7 +30,7 @@ class AgreementsController < ApplicationController
     @agreement = Agreement.new(agreement_params)
     respond_to do |format|
       if @agreement.save
-        format.html { redirect_to @agreement, notice: 'Agreement was successfully created.' }
+        format.html { redirect_to agreements_path, notice: 'Convênio criado com sucesso.' }
         format.json { render :show, status: :created, location: @agreement }
       else
         format.html { render :new }
@@ -42,13 +44,22 @@ class AgreementsController < ApplicationController
   def update
     respond_to do |format|
       if @agreement.update(agreement_params)
-        format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
+        format.html { redirect_to agreements_path, notice: 'Convênio alterado com sucesso.' }
         format.json { render :show, status: :ok, location: @agreement }
       else
         format.html { render :edit }
         format.json { render json: @agreement.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def delete_agreement_logic
+      @agreement = Agreement.find(params['id'])
+      @agreement.update(deleted_at: Date.today)
+      respond_to do |format|
+        format.html { redirect_to agreements_path, notice: 'Convênio excluido com sucesso.' }
+        format.json { head :no_content }
+      end
   end
 
   # DELETE /agreements/1

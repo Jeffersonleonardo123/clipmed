@@ -16,6 +16,7 @@ Rails.application.routes.draw do
  # attendances
     get "/attendances/attendance_day" => "attendances#attendance_day", as: :attendance_day
     get "/schedullers/attendance_filter_day" => "attendances#attendance_filter_day", as: :attendance_filter_day
+    get "/attendances/filter_attendance" => "attendances#filter_attendance", as: :filter_attendance
  # attendances end
 
  # login
@@ -27,11 +28,25 @@ Rails.application.routes.draw do
 
 # login end
 
+# clients
    get "/clients/find_client" => "clients#find_clients", as: :find_clients
+   get "/clients/delete_client_logic" => "clients#delete_client_logic", as: :delete_client_logic
+ # clients end
 
+# agreements
+   get "/agreements/delete_agreement_logic" => "agreements#delete_agreement_logic", as: :delete_agreement_logic
+# agreements and
 
+# professionals
+   get "/professionals/delete_professional_logic" => "professionals#delete_professional_logic", as: :delete_professional_logic
+# professionals and
+
+# users
+   get "/users/delete_user_logic" => "users#delete_user_logic", as: :delete_user_logic
+# users and
 
    resources :attendances
+
    resources :clients
    resources :schedullers
    resources :companies

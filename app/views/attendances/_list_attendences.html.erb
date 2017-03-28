@@ -1,0 +1,33 @@
+<table class="table table-bordered table-striped">
+  <thead class="head-table">
+    <tr>
+      <th>Data</th>
+      <th>Médico</th>
+      <th>Paciente <i class="material-icons md-18 icon-title">call</i></th>
+      <th>Convênio <i class="material-icons md-18 icon-title">call</i></th>
+      <th>Eventos</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attendances.each do |attendances| %>
+        <tr class="<%= cycle("warning", "danger") -%>">
+        <td><%= attendances.date %></td>
+        <td><%= attendances.professional.name%></td>
+        <td><%= attendances.client.name %></td>
+        <td><%= attendances.agreement.name %></td>
+        <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-info dropdown-toggle btn-sm btn-clips" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Opções <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+              </ul>
+            </div>
+        </div>
+
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+</table>

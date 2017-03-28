@@ -1,10 +1,14 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize_user
+
 
   # GET /attendances
   # GET /attendances.json
   def index
-    @attendances = Attendance.all
+    @attendances = current_user.company.attendances
+    @agreements  = current_user.company.agreements
+    @professionals  = current_user.company.professionals
   end
 
   # GET /attendances/1
@@ -44,6 +48,7 @@ class AttendancesController < ApplicationController
   def create
     @attendance = Attendance.new(attendance_params)
     @attendance.status = "ATENDIDO"
+    @attendance.date = Date.today
 
     respond_to do |format|
       if @attendance.save
@@ -82,7 +87,7 @@ class AttendancesController < ApplicationController
 
 
   def attendance_day
-    @professionals  = current_user.company.professionals.all
+    @professionals  = current_user.company.professionals
     @schedullers = current_user.company.schedullers.order(:time_marked).
     where("date = ? ",Date.today) ;
   end
@@ -90,6 +95,26 @@ class AttendancesController < ApplicationController
   def attendance_filter_day
     @schedullers = current_user.company.schedullers.order(:time_marked).
     where("date = ? and professional_id = ?",params[:date_find].to_date,params[:professional_id]) ;
+  end
+
+
+  def filter_attendance
+    @attendances = current_user.company.attendances
+    if params['agreement_id']
+      @attendances = @attendances.where('agreement_id = ?', params['agreement_id'])
+    end
+    if params['professional_id']
+      @attendances = @attendances.where('professional_id = ?', params['professional_id'])
+    end
+    if params['client_id'].to_i > 0
+      @attendances = @attendances.where('client_id = ?', params['client_id'])
+    end
+    if params['date_begin'] != ''
+      @attendances = @attendances.where('date >= ?', params['date_begin'].to_date)
+    end
+    if params['date_end'] != ''
+      @attendances = @attendances.where('date <= ?', params['date_end'].to_date)
+    end
   end
 
   private

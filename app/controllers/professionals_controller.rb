@@ -1,10 +1,12 @@
 class ProfessionalsController < ApplicationController
   before_action :set_professional, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize_user
+
 
   # GET /professionals
   # GET /professionals.json
   def index
-    @professionals = Professional.all
+    @professionals = current_user.company.professionals.where('deleted_at IS NULL')
   end
 
   # GET /professionals/1
@@ -29,7 +31,7 @@ class ProfessionalsController < ApplicationController
 
     respond_to do |format|
       if @professional.save
-        format.html { redirect_to @professional, notice: 'Professional was successfully created.' }
+        format.html { redirect_to professionals_path, notice: 'Médico salvo com sucesso.' }
         format.json { render :show, status: :created, location: @professional }
       else
         format.html { render :new }
@@ -43,7 +45,7 @@ class ProfessionalsController < ApplicationController
   def update
     respond_to do |format|
       if @professional.update(professional_params)
-        format.html { redirect_to @professional, notice: 'Professional was successfully updated.' }
+        format.html { redirect_to professionals_path, notice: 'Médico alterado com sucesso.' }
         format.json { render :show, status: :ok, location: @professional }
       else
         format.html { render :edit }
@@ -51,6 +53,16 @@ class ProfessionalsController < ApplicationController
       end
     end
   end
+
+  def delete_professional_logic
+      @professional = Professional.find(params['id'])
+      @professional.update(deleted_at: Date.today)
+      respond_to do |format|
+        format.html { redirect_to professionals_path, notice: 'Médico excluido com sucesso.' }
+        format.json { head :no_content }
+      end
+  end
+
 
   # DELETE /professionals/1
   # DELETE /professionals/1.json

@@ -3,5 +3,5 @@ class Attendance < ActiveRecord::Base
   belongs_to :professional
   belongs_to :user
   belongs_to :agreement
-  has_many   :clients
+  belongs_to :client
 end

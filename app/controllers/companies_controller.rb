@@ -1,5 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize_user
+
 
   # GET /companies
   # GET /companies.json
@@ -28,7 +30,7 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
+        format.html { redirect_to companies_path, notice: 'Empresa salva com sucesso.' }
         format.json { render :show, status: :created, location: @company }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class CompaniesController < ApplicationController
   def update
     respond_to do |format|
       if @company.update(company_params)
-        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
+        format.html { redirect_to companies_path, notice: 'Empresa alterada com sucesso.' }
         format.json { render :show, status: :ok, location: @company }
       else
         format.html { render :edit }

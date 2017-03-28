@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = current_user.company.users.where('deleted_at IS NULL')
   end
 
   # GET /users/1
@@ -27,7 +27,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @user.email = @user.email.downcase!
     respond_to do |format|
       if @user.save
         format.html { redirect_to users_path, notice: 'Usuário salvo com sucesso.' }
@@ -43,7 +42,6 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     # puts user_params.type
-    @user.email = @user.email.downcase!
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to users_path, notice: 'Usuário alterado com sucesso.' }
@@ -55,12 +53,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def delete_user_logic
+      @user = User.find(params['id'])
+      @user.update(deleted_at: Date.today)
+      respond_to do |format|
+        format.html { redirect_to agreements_path, notice: 'Usuário excluido com sucesso.' }
+        format.json { head :no_content }
+      end
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'Usuário apagado com sucesso.' }
+      format.html { redirect_to users_url, notice: 'Usuário excluido com sucesso.' }
       format.json { head :no_content }
     end
   end
