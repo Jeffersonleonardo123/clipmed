@@ -3,6 +3,7 @@ class Company < ActiveRecord::Base
   has_many :professionals
   has_many :users
   has_many :agreements
+  has_many :card_operators  
   has_many :schedullers
   has_many :attendances
 

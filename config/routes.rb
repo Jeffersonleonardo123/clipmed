@@ -45,14 +45,26 @@ Rails.application.routes.draw do
    get "/users/delete_user_logic" => "users#delete_user_logic", as: :delete_user_logic
 # users and
 
-   resources :attendances
+#card_operators
+   get "/card_operators/delete_card_operator_logic" => "card_operators#delete_card_operator_logic", as: :delete_card_operator_logic
+#card_operators end
 
+#financials
+    post "/financials/create_parcels" => "financials#create_parcels", as: :create_parcels
+    get "/financials/new_parcels" => "financials#create_parcels", as: :new_parcels
+#end financials
+
+   resources :attendances
    resources :clients
    resources :schedullers
    resources :companies
    resources :agreements
    resources :professionals
    resources :users
+   resources :card_operators
+   resources :way_payments
+   resources :financials
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

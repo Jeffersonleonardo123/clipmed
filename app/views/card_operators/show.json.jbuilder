@@ -1,0 +1,1 @@
+json.partial! "card_operators/card_operator", card_operator: @card_operator

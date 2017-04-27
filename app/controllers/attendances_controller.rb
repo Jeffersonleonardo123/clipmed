@@ -4,11 +4,11 @@ class AttendancesController < ApplicationController
 
 
   # GET /attendances
-  # GET /attendances.json
   def index
     @attendances = current_user.company.attendances
     @agreements  = current_user.company.agreements
     @professionals  = current_user.company.professionals
+    # GET /attendances.json
   end
 
   # GET /attendances/1
@@ -22,16 +22,8 @@ class AttendancesController < ApplicationController
     @scheduller = Scheduller.find(params['scheduller_id'])
     @client = Client.find(@scheduller.client_id)
 
-    @first_attendance = current_user.company.attendances.order(:updated_at).
-                        where("client_id = ? and professional_id = ?",@scheduller.client_id, @scheduller.professional_id).first ;
-
-    if not @first_attendance
-      @first_attendance = current_user.company.attendances.order(:updated_at).
-                          where("client_id = ? ",@scheduller.client_id).first ;
-    end
-
-    @history_list = current_user.company.attendances.order(:updated_at).
-                        where("client_id = ? ",@scheduller.client_id);
+    @first_attendance = factory_attendence_service.get_first_attendance(@scheduller,current_user)
+    @history_list = factory_attendence_service.get_history_list(@scheduller,current_user)
 
     @attendance = Attendance.new
   end
@@ -88,39 +80,26 @@ class AttendancesController < ApplicationController
 
   def attendance_day
     @professionals  = current_user.company.professionals
-    @schedullers = current_user.company.schedullers.order(:time_marked).
-    where("date = ? ",Date.today) ;
+    @schedullers = factory_attendence_service.get_attendance_day(current_user)
   end
 
   def attendance_filter_day
-    @schedullers = current_user.company.schedullers.order(:time_marked).
-    where("date = ? and professional_id = ?",params[:date_find].to_date,params[:professional_id]) ;
+    @schedullers = factory_attendence_service.get_attendance_filter_day(current_user,params[:date_find],params[:professional_id])
   end
 
 
   def filter_attendance
-    @attendances = current_user.company.attendances
-    if params['agreement_id']
-      @attendances = @attendances.where('agreement_id = ?', params['agreement_id'])
-    end
-    if params['professional_id']
-      @attendances = @attendances.where('professional_id = ?', params['professional_id'])
-    end
-    if params['client_id'].to_i > 0
-      @attendances = @attendances.where('client_id = ?', params['client_id'])
-    end
-    if params['date_begin'] != ''
-      @attendances = @attendances.where('date >= ?', params['date_begin'].to_date)
-    end
-    if params['date_end'] != ''
-      @attendances = @attendances.where('date <= ?', params['date_end'].to_date)
-    end
+    @attendances = factory_attendence_service.build_filter_attendance(current_user)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_attendance
       @attendance = Attendance.find(params[:id])
+    end
+
+    def factory_attendence_service
+      attendance_service = AttendanceService.new
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

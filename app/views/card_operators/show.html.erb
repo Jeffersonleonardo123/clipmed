@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @card_operator.company_id %>
+</p>
+
+<p>
+  <strong>Deleted at:</strong>
+  <%= @card_operator.deleted_at %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @card_operator.name %>
+</p>
+
+<%= link_to 'Edit', edit_card_operator_path(@card_operator) %> |
+<%= link_to 'Back', card_operators_path %>

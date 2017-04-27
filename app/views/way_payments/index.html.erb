@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Way Payments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Deleted at</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @way_payments.each do |way_payment| %>
+      <tr>
+        <td><%= way_payment.company_id %></td>
+        <td><%= way_payment.deleted_at %></td>
+        <td><%= way_payment.name %></td>
+        <td><%= link_to 'Show', way_payment %></td>
+        <td><%= link_to 'Edit', edit_way_payment_path(way_payment) %></td>
+        <td><%= link_to 'Destroy', way_payment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Way payment', new_way_payment_path %>

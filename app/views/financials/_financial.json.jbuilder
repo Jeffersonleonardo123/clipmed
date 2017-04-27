@@ -1,0 +1,2 @@
+json.extract! financial, :id, :company_id, :user_id, :conditions_payments, :way_payments_id, :client_id, :date_vencto, :status, :category, :date_receiopt, :value_document, :value_ticket, :interest, :discount, :addition, :reference, :parcel, :created_at, :updated_at
+json.url financial_url(financial, format: :json)

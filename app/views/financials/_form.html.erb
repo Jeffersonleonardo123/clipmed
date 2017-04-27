@@ -1,0 +1,81 @@
+<%= form_for(@financial) do |f| %>
+  <% if @financial.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@financial.errors.count, "error") %> prohibited this financial from being saved:</h2>
+
+      <ul>
+      <% @financial.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :company_id %><br>
+    <%= f.number_field :company_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :conditions_payments %><br>
+    <%= f.text_field :conditions_payments %>
+  </div>
+  <div class="field">
+    <%= f.label :way_payments_id %><br>
+    <%= f.number_field :way_payments_id %>
+  </div>
+  <div class="field">
+    <%= f.label :client_id %><br>
+    <%= f.number_field :client_id %>
+  </div>
+  <div class="field">
+    <%= f.label :date_vencto %><br>
+    <%= f.date_select :date_vencto %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br>
+    <%= f.text_field :category %>
+  </div>
+  <div class="field">
+    <%= f.label :date_receiopt %><br>
+    <%= f.date_select :date_receiopt %>
+  </div>
+  <div class="field">
+    <%= f.label :value_document %><br>
+    <%= f.text_field :value_document %>
+  </div>
+  <div class="field">
+    <%= f.label :value_ticket %><br>
+    <%= f.text_field :value_ticket %>
+  </div>
+  <div class="field">
+    <%= f.label :interest %><br>
+    <%= f.text_field :interest %>
+  </div>
+  <div class="field">
+    <%= f.label :discount %><br>
+    <%= f.text_field :discount %>
+  </div>
+  <div class="field">
+    <%= f.label :addition %><br>
+    <%= f.text_field :addition %>
+  </div>
+  <div class="field">
+    <%= f.label :reference %><br>
+    <%= f.text_field :reference %>
+  </div>
+  <div class="field">
+    <%= f.label :parcel %><br>
+    <%= f.number_field :parcel %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

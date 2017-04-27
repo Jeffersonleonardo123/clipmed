@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Financials</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>User</th>
+      <th>Conditions payments</th>
+      <th>Way payments</th>
+      <th>Client</th>
+      <th>Date vencto</th>
+      <th>Status</th>
+      <th>Category</th>
+      <th>Date receiopt</th>
+      <th>Value document</th>
+      <th>Value ticket</th>
+      <th>Interest</th>
+      <th>Discount</th>
+      <th>Addition</th>
+      <th>Reference</th>
+      <th>Parcel</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @financials.each do |financial| %>
+      <tr>
+        <td><%= financial.company_id %></td>
+        <td><%= financial.user_id %></td>
+        <td><%= financial.conditions_payments %></td>
+        <td><%= financial.way_payments_id %></td>
+        <td><%= financial.client_id %></td>
+        <td><%= financial.date_vencto %></td>
+        <td><%= financial.status %></td>
+        <td><%= financial.category %></td>
+        <td><%= financial.date_receiopt %></td>
+        <td><%= financial.value_document %></td>
+        <td><%= financial.value_ticket %></td>
+        <td><%= financial.interest %></td>
+        <td><%= financial.discount %></td>
+        <td><%= financial.addition %></td>
+        <td><%= financial.reference %></td>
+        <td><%= financial.parcel %></td>
+        <td><%= link_to 'Show', financial %></td>
+        <td><%= link_to 'Edit', edit_financial_path(financial) %></td>
+        <td><%= link_to 'Destroy', financial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Financial', new_parcels_path %>

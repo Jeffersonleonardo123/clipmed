@@ -1,0 +1,1 @@
+json.partial! "way_payments/way_payment", way_payment: @way_payment

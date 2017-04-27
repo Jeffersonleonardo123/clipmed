@@ -1,0 +1,1 @@
+json.array! @way_payments, partial: 'way_payments/way_payment', as: :way_payment

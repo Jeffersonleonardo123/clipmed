@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @financial.company_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @financial.user_id %>
+</p>
+
+<p>
+  <strong>Conditions payments:</strong>
+  <%= @financial.conditions_payments %>
+</p>
+
+<p>
+  <strong>Way payments:</strong>
+  <%= @financial.way_payments_id %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @financial.client_id %>
+</p>
+
+<p>
+  <strong>Date vencto:</strong>
+  <%= @financial.date_vencto %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @financial.status %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @financial.category %>
+</p>
+
+<p>
+  <strong>Date receiopt:</strong>
+  <%= @financial.date_receiopt %>
+</p>
+
+<p>
+  <strong>Value document:</strong>
+  <%= @financial.value_document %>
+</p>
+
+<p>
+  <strong>Value ticket:</strong>
+  <%= @financial.value_ticket %>
+</p>
+
+<p>
+  <strong>Interest:</strong>
+  <%= @financial.interest %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @financial.discount %>
+</p>
+
+<p>
+  <strong>Addition:</strong>
+  <%= @financial.addition %>
+</p>
+
+<p>
+  <strong>Reference:</strong>
+  <%= @financial.reference %>
+</p>
+
+<p>
+  <strong>Parcel:</strong>
+  <%= @financial.parcel %>
+</p>
+
+<%= link_to 'Edit', edit_financial_path(@financial) %> |
+<%= link_to 'Back', financials_path %>
